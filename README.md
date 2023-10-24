@@ -1,4 +1,4 @@
-#String+ Library
+# String+ Library
 
 Implementation of the string.h library with additions with my own implementation of sprintf and sscanf functions. 
 The string.h library is the main C library for string processing. As part of the project I’ll work on tasks with string data and consolidate the structured approach.
