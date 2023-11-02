@@ -1,0 +1,5 @@
+#test strstr_test
+    ck_assert_str_eq(realized_strstr("Hello world", "ello"), strstr("Hello world", "ello"));
+    ck_assert_str_eq(realized_strstr("Hello world", "Hello world"), strstr("Hello world", "Hello world"));
+    ck_assert_ptr_eq(realized_strstr("Hello world", "abc"), NULL);
+    ck_assert_str_eq(realized_strstr("Hello world", ""), strstr("Hello world", ""));

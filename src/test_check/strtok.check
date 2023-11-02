@@ -1,0 +1,23 @@
+#test strtok_test
+    char sample1[4][20] = { "abc|def|ghijsklm|n","a|bcsdef|hijkl","abc|dek|lmn","abc|qwe" };
+    char sample2[4][20] = { "abc|def|ghijsklm|n","a|bcsdef|hijkl","abc|dek|lmn","abc|qwe" };
+    char *sample3 = "|s";
+    for (int i = 0; i < 4; i++) {
+        char *temp1, *temp2;
+        ck_assert_str_eq(temp1 = realized_strtok(sample1[i],sample3), temp2 = strtok(sample2[i],sample3));
+        while(temp2 != NULL) {
+            temp1 = realized_strtok(realized_NULL,sample3);
+            temp2 = strtok(realized_NULL,sample3);
+            if (temp2 != realized_NULL)
+                ck_assert_str_eq(temp1, temp2);
+            else
+                ck_assert_ptr_null(temp1);
+        }
+    }
+    
+#test strtok_test_2
+    char sample1[4] = "qqq\0";
+    char *sample3 = "q";
+    char *temp1;
+    temp1 = realized_strtok(sample1,sample3);
+    ck_assert_ptr_null(temp1);

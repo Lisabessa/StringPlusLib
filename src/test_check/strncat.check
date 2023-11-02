@@ -1,0 +1,13 @@
+#test strncat_test
+    char arr1[100] = "hafdfsdf";
+    char arr11[100] = "hafdfsdf";
+    ck_assert_str_eq(realized_strncat(arr1, "ello", 5), strncat(arr11, "ello", 5));
+    char arr2[100] = "avanvshavbdvs";
+    char arr22[100] = "avanvshavbdvs";
+    ck_assert_str_eq(realized_strncat(arr2, "ello", 1), strncat(arr22, "ello", 1));
+    char arr3[100] = "tralalaklajjdkqqq fff";
+    char arr33[100] = "tralalaklajjdkqqq fff";
+    ck_assert_str_eq(realized_strncat(arr3, "ello", 10), strncat(arr33, "ello", 10));
+    char arr4[100] = "jejeje";
+    char arr44[100] = "jejeje";
+    ck_assert_str_eq(realized_strncat(arr4, "", 4), strncat(arr44, "", 4));

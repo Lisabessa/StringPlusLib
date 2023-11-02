@@ -1,0 +1,7 @@
+#test memcpy_test
+    char sample[4][20] = { "abcdefghijklmn","abcdefghijkl","abcdeklmn","abc" };
+    for (int i = 0; i < 4; i++) {
+        for(int j = 0; j < 4; j++){
+            ck_assert_mem_eq(realized_memcpy(sample[i],sample[j],sizeof(sample[i])), memcpy(sample[i],sample[j],sizeof(sample[i])),1);
+        }
+    }

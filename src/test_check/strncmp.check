@@ -1,0 +1,6 @@
+#test strncmp_test
+    ck_assert_int_eq(realized_strncmp("Hello world", "Hello world", 5), strncmp("Hello world", "Hello world", 5));
+    ck_assert_int_eq(realized_strncmp("Hsllo world", "Hello world", 5), strncmp("Hsllo world", "Hello world", 5));
+    ck_assert_int_eq(realized_strncmp("Hello world", "Hsllo world", 5), strncmp("Hello world", "Hsllo world", 5));
+    ck_assert_int_eq(realized_strncmp("Hello world", "Hello world", 100), strncmp("Hello world", "Hello world", 100));
+    ck_assert_int_eq(realized_strncmp("Hello world", "He", 5), strncmp("Hello world", "He", 5));

@@ -1,0 +1,13 @@
+#test trim_test
+    char *res = realized_trim("  hello ", realized_NULL);
+    ck_assert_str_eq(res, "hello");
+    if(res) free(res);
+    res = realized_trim("?!?j  hello jjjjjjj", "j?!");
+    ck_assert_str_eq(res, "  hello ");
+    if(res) free(res);
+    res = realized_trim(realized_NULL, "ABC");
+    ck_assert_ptr_eq(res, realized_NULL);
+    if(res) free(res);
+    res = realized_trim("Hi, nice world!", "Hi, ");
+    ck_assert_str_eq(res, "nice world!");
+    if(res) free(res);

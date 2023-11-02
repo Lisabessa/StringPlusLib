@@ -1,0 +1,7 @@
+#test strerror_test
+    for (int i = -10; i < 200; i++) {
+        char* s21 = realized_strerror(i);
+        char* orig = strerror(i);
+        ck_assert_str_eq(s21, orig);
+        if(s21) free(s21);
+    }

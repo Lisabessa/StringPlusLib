@@ -1,0 +1,7 @@
+#test memset_test
+    char sample[4][20] = { "abcdefghijklmn","abcdefghijkl","abcdeklmn","abcqwe" };
+    for (int i = 0; i < 4; i++) {
+        for(int j = 0; j < 4; j++){
+            ck_assert_mem_eq(realized_memset(sample[i],sample[j][i],sizeof(sample[i])), memset(sample[i],sample[j][i],sizeof(sample[i])),1);
+        }
+    }

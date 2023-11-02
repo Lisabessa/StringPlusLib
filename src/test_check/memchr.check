@@ -1,0 +1,7 @@
+#test memchr_test
+    const int test_value = 4;
+    char sample[4][20] = { "abcdefghijklmn","abcdefghijkl","abcdeklmn","abc" };
+    for (int i = 0; i < test_value; i++) {
+        for(int j = 0; j < (int)sizeof(sample[i]);j++)
+            ck_assert_mem_eq(realized_memchr(sample[i],sample[i][j],sizeof(sample[i])), memchr(sample[i],sample[i][j],sizeof(sample[i])),1);
+    }

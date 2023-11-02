@@ -1,0 +1,9 @@
+#test to_upper_test
+    char text[] = "HELLO FRIEND, how are you today?";
+    char answer[100] = "HELLO FRIEND, HOW ARE YOU TODAY?";
+    char *res = realized_to_upper(text);
+    ck_assert_str_eq(answer, res);
+    if(res) free(res);
+    res = realized_to_upper(realized_NULL);
+    ck_assert_ptr_eq(res, realized_NULL);
+    if(res) free(res);

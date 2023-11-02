@@ -1,0 +1,3 @@
+#test strlen_test
+    ck_assert_int_eq(realized_strlen("Hello world"), strlen("Hello world"));
+    ck_assert_int_eq(realized_strlen(""), strlen(""));

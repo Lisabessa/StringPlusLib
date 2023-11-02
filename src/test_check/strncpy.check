@@ -1,0 +1,14 @@
+#test strncpy_test
+    char arr1[100] = "hafdfsdf";
+    char arr11[100] = "hafdfsdf";
+    char arr01[4] = "ello";
+    ck_assert_str_eq(realized_strncpy(arr1, arr01, 4), strncpy(arr11, arr01, 4));
+    char arr2[100] = "ahskahajlsjas keey";
+    char arr22[100] = "ahskahajlsjas keey";
+    ck_assert_str_eq(realized_strncpy(arr2, arr01, 1), strncpy(arr22, arr01, 1));
+    char arr3[100] = "hello world";
+    char arr33[100] = "hello world";
+    ck_assert_str_eq(realized_strncpy(arr3, "ello", 10), strncpy(arr33, "ello", 10));
+    char arr4[100] = "sjkjhsj3lsy4j di4333";
+    char arr44[100] = "sjkjhsj3lsy4j di4333";
+    ck_assert_str_eq(realized_strncpy(arr4, "", 4), strncpy(arr44, "", 4));

@@ -1,0 +1,4 @@
+#test strrchr_test
+    ck_assert_str_eq(realized_strrchr("Hello world", 'l'), strrchr("Hello world", 'l'));
+    ck_assert_ptr_eq(realized_strrchr("Hello world", 'z'), NULL);
+    ck_assert_str_eq(realized_strrchr("Hello world", '\0'), strrchr("Hello world", '\0'));

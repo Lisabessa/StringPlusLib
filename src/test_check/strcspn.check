@@ -1,0 +1,6 @@
+#test strcspn_test
+    char sample1[4][20] = { "abghjkc|def","sa|bcsdef|hijkl","abc|dek|lmn","abc|qwe" };
+    char *sample3 = "|s";
+    for (int i = 0; i < 4; i++) {
+        ck_assert_int_eq(realized_strcspn(sample1[i],sample3), strcspn(sample1[i],sample3));
+    }

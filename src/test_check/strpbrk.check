@@ -1,0 +1,4 @@
+#test strpbrk_test
+    ck_assert_str_eq(realized_strpbrk("Hello world", "eow"), strpbrk("Hello world", "eow"));
+    ck_assert_ptr_eq(realized_strpbrk("Hello world", "abc"), NULL);
+    ck_assert_ptr_eq(realized_strpbrk("Hello world", ""), NULL);

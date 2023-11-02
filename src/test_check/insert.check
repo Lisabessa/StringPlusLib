@@ -1,0 +1,13 @@
+#test insert_test
+    char *res = realized_insert("Hey, how going", "is it ", 9);
+    ck_assert_str_eq(res, "Hey, how is it going");
+    if(res) free(res);
+    res = realized_insert(realized_NULL, realized_NULL, 0);
+    ck_assert_ptr_eq(res, realized_NULL);
+    if(res) free(res);
+    res = realized_insert("hiii", "meow", 12);
+    ck_assert_ptr_eq(res, realized_NULL);
+    if(res) free(res);
+    res = realized_insert("hello", " dear friend", 5);
+    ck_assert_str_eq(res, "hello dear friend");
+    if(res) free(res);

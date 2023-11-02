@@ -1,0 +1,148 @@
+#test sscanf_test
+    char *format = "%d %hd %3hhd %5ld %lld %*1hd";
+    char *str = "-923 -12 3123 244524 -92365365473656372309 -478";
+    int d1, d2;
+    short d3, d4;
+    signed char d5, d6; 
+    long int d7, d8;
+    long long d9, d10;
+    short int d11 = 0, d12 = 0;
+    int16_t res1 = realized_sscanf(str, format, &d1, &d3, &d5, &d7, &d9, &d11);
+    int16_t res2 = sscanf(str, format, &d2, &d4, &d6, &d8, &d10, &d12);
+    ck_assert_int_eq(res1, res2);
+    ck_assert_int_eq(d1, d2);
+    ck_assert_int_eq(d3, d4);
+    ck_assert_int_eq(d5, d6);
+    ck_assert_int_eq(d7, d8);
+    ck_assert_int_eq(d9, d10);
+    ck_assert_int_eq(d11, d12);
+
+    format = "%d %n";
+    str = "23 Elizaveta";
+    int d13 = 0, d14 = 0;
+    int n1 = 0, n2 = 0;
+    res1 = realized_sscanf(str, format, &d13, &n1);
+    res2 = sscanf(str, format, &d14, &n2);
+    ck_assert_int_eq(res1, res2);
+    ck_assert_int_eq(d13, d14);
+    ck_assert_int_eq(n1, n2);
+
+    int32_t p1 = 0, p2 = 0;
+    str = "23%%%";
+    const char fstr[] = "%d%%%%%%";
+    res1 = realized_sscanf(str, fstr, &p1);
+    res2 = sscanf(str, fstr, &p2);
+    ck_assert_int_eq(res1, res2);
+    ck_assert_int_eq(p1, p2);
+
+    format = "%i %i %i %i %o %r";
+    str = "0xfffffff -0xffffefebd +0xAfEfffAf -0x39bbb3e -1234";
+    unsigned int d15, d16, d17, d18, d19, d20, d21, d22, d23, d24;
+    res1 = realized_sscanf(str, format, &d15, &d17, &d19, &d21, &d23);
+    res2 = sscanf(str, format, &d16, &d18, &d20, &d22, &d24);
+    ck_assert_int_eq(res1, res2);
+    ck_assert_uint_eq(d15, d16);
+    ck_assert_uint_eq(d17, d18);
+    ck_assert_uint_eq(d19, d20);
+    ck_assert_uint_eq(d21, d22);
+    ck_assert_uint_eq(d23, d24);
+
+    format = "%hhu %4hhu %1hu %u %3lu %llu %x";
+    str = "4321 -923 1234 387 8224934372036854775835309 3384836746727356463654264246 3AFE";
+    unsigned char d25, d26, d27, d28;
+    unsigned short d29, d30;
+    unsigned int d31, d32, d37, d38;
+    unsigned long int d33, d34;
+    unsigned long long int d35, d36;
+    res1 = realized_sscanf(str, format, &d25, &d27, &d29, &d31, &d33, &d35, &d37);
+    res2 = sscanf(str, format, &d26, &d28, &d30, &d32, &d34, &d36, &d38);
+    ck_assert_int_eq(res1, res2);
+    ck_assert_int_eq(d25, d26);
+    ck_assert_int_eq(d27, d28);
+    ck_assert_int_eq(d29, d30);
+    ck_assert_int_eq(d31, d32);
+    ck_assert_int_eq(d33, d34);
+    ck_assert_int_eq(d35, d36);
+    ck_assert_int_eq(d37, d38);
+
+    format = "%f %f %f %f %f %f %Lf %lf";
+    str = "75 +189.8 -87. +inf NAN INFINITY -1343.233586095 1e-10";
+    float f1, f2, f3, f4, f5 = 0, f6 = 0;
+    float inf1, inf2, inf3, inf4, nan1, nan2;
+    long double ld1, ld2;
+    double db1, db2;
+    res1 = realized_sscanf(str, format, &f1, &f3, &f5, &inf1, &nan1, &inf3, &ld1, &db1);
+    res2 = sscanf(str, format, &f2, &f4, &f6, &inf2, &nan2, &inf4, &ld2, &db2);
+    ck_assert_int_eq(res1, res2);
+    ck_assert_float_eq(f1, f2);
+    ck_assert_float_eq(f3, f4);
+    ck_assert_float_eq(f5, f6);
+    ck_assert_ldouble_eq(inf1, inf2);
+    ck_assert_float_nan(nan1);
+    ck_assert_float_nan(nan2);
+    ck_assert_ldouble_eq(inf3, inf4);
+    ck_assert_double_eq(ld1, ld2);
+    ck_assert_double_eq(db1, db2);
+
+    format = "%p";
+    str = "1357ABCEF";
+    int *ptr1 = 0, *ptr2 = 0;
+    res1 = realized_sscanf(str, format, &ptr1);
+    res2 = sscanf(str, format, &ptr2);
+    ck_assert_int_eq(res1, res2);
+    ck_assert_ptr_eq(ptr1, ptr2);
+
+    format = "%8c";
+    str = "\t\n\n  123 \n  \t";
+    char c1[9] = {'\0'}, c2[9] = {'\0'};
+    res1 = realized_sscanf(str, format, c1);
+    res2 = sscanf(str, format, c2);
+    ck_assert_int_eq(res1, res2);
+    ck_assert_pstr_eq(c1, c2);
+
+    format = "%9s";
+    str = "\n  lorem ipsum dolor sit amet!!! \n  \t";
+    char c3[100] = "", c4[100] = "";
+    res1 = realized_sscanf(str, format, c3);
+    res2 = sscanf(str, format, c4);
+    ck_assert_int_eq(res1, res2);
+    ck_assert_pstr_eq(c3, c4);
+
+    format = "\n\n\n%*s\t";
+    str = "\t\n  hello Lizia\t";
+    char c5[100] = "", c6[100] = "";
+    res1 = realized_sscanf(str, format, c5);
+    res2 = sscanf(str, format, c6);
+    ck_assert_int_eq(res1, res2);
+    ck_assert_pstr_eq(c5, c6);
+
+    format = "%s hello";
+    str = "Elizaveta";
+    char c7[100] = "", c8[100] = "";
+    res1 = realized_sscanf(str, format, c7);
+    res2 = sscanf(str, format, c8);
+    ck_assert_int_eq(res1, res2);
+    ck_assert_pstr_eq(c7, c8);
+
+    format = "%Q";
+    str = "";
+    char c9[100] = "", c10[100] = "";
+    res1 = realized_sscanf(str, format, c9);
+    res2 = sscanf(str, format, c10);
+    ck_assert_int_eq(res1, res2);
+    ck_assert_pstr_eq(c9, c10);
+
+    format = "\n\n\n%*ls\t";
+    str = "\t\n  hello Lizia\t";
+    char c11[100] = "", c12[100] = "";
+    res1 = realized_sscanf(str, format, c11);
+    res2 = sscanf(str, format, c12);
+    ck_assert_int_eq(res1, res2);
+    ck_assert_pstr_eq(c11, c12);
+
+    format = "%3ls ";
+    str = "いらっしゃいませ ";
+    wchar_t c13[100];
+    int result = realized_sscanf(str, format, c13);
+    ck_assert_int_eq(result, result);
+    ck_assert_int_eq(0, wcscmp(c13, c13));
