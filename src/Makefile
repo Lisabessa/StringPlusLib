@@ -51,7 +51,7 @@ gcov_report: check
 
 check:
 	checkmk clean_mode=1 test_check/headers/*.check test_check/*.check > $(SOURCES)
-	cp -f ../materials/linters/.clang-format ./.clang-format
+	cp -f ../materials/.clang-format ./.clang-format
 	clang-format -i *.c *.h
 	rm .clang-format
 

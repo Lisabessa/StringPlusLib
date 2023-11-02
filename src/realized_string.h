@@ -84,7 +84,8 @@ void *realized_to_lower(const char *str);
 // Returns a new string in which a specified string (str) is inserted at a
 // specified index position (start_index) in the given string (src). In case of
 // any error, return NULL
-void *realized_insert(const char *src, const char *str, realized_size_t start_index);
+void *realized_insert(const char *src, const char *str,
+                      realized_size_t start_index);
 
 // Returns a new string in which all leading and trailing occurrences of a set
 // of specified characters (trim_chars) from the given string (src) are removed.
