@@ -58,4 +58,4 @@ check:
 rebuild: clean all
 
 clean:
-	rm -rf $(OBJ_DIR)/* $(OBJ_DIR)/*.* $(EXECUTABLE) string.a *.gcda *.gcno *.info $(GCOV_DIR) check_string.c greport $(OBJ_DIR)
+	rm -rf $(OBJ_DIR)/* $(OBJ_DIR)/*.* $(EXECUTABLE) string.a *.gcda *.gcno *.info $(GCOV_DIR) check_string.c greport $(OBJ_DIR) tests.c
